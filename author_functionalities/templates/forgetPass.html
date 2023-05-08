@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>create account</title>
+    <style>
+        body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: black;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      .container {
+        padding: 16px;
+        background-color: white;
+        margin: 50px;
+      }
+      input {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+      }
+      input[type=text]:focus, input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+      }
+      hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+      }
+      button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+      }
+  
+      button:hover {
+        opacity: 1;
+      }
+      a {
+        color: dodgerblue;
+      }
+      .signin {
+        background-color: #f1f1f1;
+        text-align: center;
+      }
+      .cpsw{
+        justify-content: left;
+        margin-right: 300px;
+      }
+      .fpsw{
+        justify-content: right;
+      }
+  </style>
+</head>
+
+<body>
+
+<form action="" method="post">
+  
+    <div class="container">
+        <center> <h1>Forgot Password</h1></center>
+        
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-Success" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+        <label for="uname"><b>Enter Email:</b></label>
+        <input type="email" placeholder="example@gmail.com" name="email" required>
+      <button type="submit">Submit</button>
+      <center style="font-size: larger;"><a href="{{url_for('forgot_pass_by_otp')}}">Try Another way!</a></center>
+
+    </div>
+  
+  </form>
+</body>

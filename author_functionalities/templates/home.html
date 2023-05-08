@@ -1,0 +1,17 @@
+
+<h1 style="margin: 100px 500px; 0px 0px;"> Welcome to my web App!!!!! </h1>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-Success" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<a href="{{url_for('login')}}">
+<button style="background-color: #04AA6D; color: white; padding: 16px 20px;
+margin: 8px 0; border: none; cursor: pointer; width: 100%; opacity: 0.9;">
+Logout </button></a>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>create account</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="967307350015-hsqb5728thh30bhsbai7ovvno1tcccj7.apps.googleusercontent.com">
+  <style>
+      body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: black;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    .container {
+      padding: 16px;
+      background-color: white;
+      margin: 50px;
+    }
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+    input[type=text]:focus, input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+    .registerbtn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+      opacity: 1;
+    }
+    a {
+      color: dodgerblue;
+    }
+    .signin {
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+</style>
+
+</head>
+<body>
+<form action="", method="POST">
+  <div class="container">
+    <center><h1>Create Account</h1></center>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-Success" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+    <label><b>Enter Username:</b></label>
+    <input type="text" placeholder="Dhara Ghediya" name="uname" id="uname" pattern="^[a-zA-Z ]*$" required>
+
+    <label><b>Enter Email:</b></label>
+    <input type="email" placeholder="xyz@gmail.com" name="email" id="email" required> <br>
+
+    <label><b>Enter Password:</b></label>
+    <input type="password" placeholder="Example@#1234" name="password" id="password" required>
+
+    <label><b>Phone Number:</b></label>
+    <input type="number" placeholder="0123456789" name="phone_no" id="phone_no" required>
+    <hr>
+
+    <button type="submit" class="registerbtn">Register</button>
+    <center>
+    <br><hr><h3>OR</h3><hr>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <br>
+      <p>Already have an account? <a href="{{url_for('login')}}">Login</a>.</p></center>
+  </div>
+  
+</form>
+</body>
+</html>
