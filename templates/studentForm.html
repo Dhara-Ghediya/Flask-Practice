@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Add Student Record</title>
+  <style>
+      body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: black;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    .container {
+      padding: 16px;
+      background-color: white;
+      margin: 50px;
+    }
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+    option{
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    input[type=text]:focus, input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+    .registerbtn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+      opacity: 1;
+    }
+    a {
+      color: dodgerblue;
+    }
+    .signin {
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+</style>
+
+</head>
+<body>
+<form action="", method="POST">
+  <div class="container">
+    {% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-Success" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+    <center><h1>Student Form</h1></center>
+<!--
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-Success" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+-->
+    <label><b>Enter Student's Name:</b></label>
+    <input type="text" placeholder="Dhara" name="name" id="name" pattern="^[a-zA-Z ]*$" required>
+
+    <label><b>Enter Student's Roll No.:</b></label>
+    <input type="number" placeholder="123" name="roll_no" id="roll_no" required> <br>
+
+    <label><b>Select Student's Subject:</b></label>
+    <select name="subject" id="subject" required>
+        {% for name in all_sub_name%}
+            <option value="{{name.sub_id}}">{{name.sub_name}}</option>
+        {% endfor%}
+    </select><hr>
+
+    <label><b>Enter Student's Teacher:</b></label>
+    <select name="teacher" id="teacher" required>
+        {% for name in teacher_name%}
+            <option value="{{name.teacher_id}}">{{name.teacher_name}}</option>
+        {% endfor%}
+    </select>
+    <hr>
+
+    <label><b>Enter Marks of above entered Subject:</b></label>
+    <input type="number" placeholder="100" name="marks" id="marks" required>
+    <hr>
+
+    <button type="submit" class="registerbtn">Add Student Record</button>
+
+    <center>
+        <h4> If you don't want to add new record and direct go on <a href="{{url_for('listing')}}">Listing</a> Page!</h4>
+    </center>
+  </div>
+</form>
+</body>
+</html>

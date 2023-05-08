@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Add Student Record</title>
+  <style>
+      body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: black;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    .container {
+      padding: 16px;
+      background-color: white;
+      margin: 50px;
+    }
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+    option{
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    input[type=text]:focus, input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+    .registerbtn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+      opacity: 1;
+    }
+    a {
+      color: dodgerblue;
+    }
+    .signin {
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+</style>
+
+</head>
+<body>
+<form action="", method="POST">
+  <div class="container">
+    <center><h1>Student Form</h1></center>
+
+    <label><b>Student's Name:</b></label>
+    <input type="text" value="{{matched_record.student_name}}" name="name" id="name" pattern="^[a-zA-Z ]*$" required>
+
+    <label><b>Subject Name:</b></label>
+    <select name="subject" id="subject" required>
+        {% for name in all_sub_name%}
+            {% if matched_record.subject_name == name.sub_name %}
+                <option value="{{name.sub_id}}" selected>{{name.sub_name}}</option>
+            {% else %}
+                <option value="{{name.sub_id}}">{{name.sub_name}}</option>
+            {% endif %}
+        {% endfor%}
+    </select><hr>
+
+    <label><b>Teacher Name:</b></label>
+    <select name="teacher" id="teacher" required>
+        {% for name in teacher_name%}
+            {% if matched_record.teacher_name == name.teacher_name %}
+                <option value="{{name.teacher_id}}" selected>{{name.teacher_name}}</option>
+            {% else %}
+                <option value="{{name.teacher_id}}">{{name.teacher_name}}</option>
+            {% endif %}
+        {% endfor%}
+    </select><hr>
+
+    <label><b>Marks:</b></label>
+    <input type="text" value="{{matched_record.marks}}" name="marks" id="marks" required> <br>
+
+    <button type="submit" class="registerbtn">Update Student Record</button>
+  </div>
+</form>
+</body>
+</html>
